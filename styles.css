@@ -1,0 +1,514 @@
+/* ============================================
+   University ERP Student Portal - Login Page
+   ============================================ */
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --accent: #00a8d6;
+    --accent-hover: #0092bc;
+    --accent-light: #e0f5fb;
+    --bg: #dff0f7;
+    --card-bg: #ffffff;
+    --text-primary: #333333;
+    --text-secondary: #777777;
+    --text-muted: #aaaaaa;
+    --border-light: #ddd;
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    --font: 'Poppins', sans-serif;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: var(--font);
+    background-color: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   Login Card
+   ============================================ */
+.login-card {
+    width: 900px;
+    max-width: 100%;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    min-height: 420px;
+    animation: cardFadeIn 0.6s ease-out;
+}
+
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   Back Arrow
+   ============================================ */
+.back-arrow {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 10;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.back-arrow:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.back-arrow svg {
+    transition: stroke 0.2s ease;
+}
+
+.back-arrow:hover svg {
+    stroke: var(--accent);
+}
+
+/* ============================================
+   Domain Text
+   ============================================ */
+.domain-text {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+    z-index: 10;
+    font-weight: 400;
+}
+
+/* ============================================
+   Left Panel
+   ============================================ */
+.left-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Abstract Shapes */
+.abstract-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.08;
+}
+
+.shape-1 {
+    width: 220px;
+    height: 220px;
+    background: var(--accent);
+    bottom: -30px;
+    left: -40px;
+}
+
+.shape-2 {
+    width: 160px;
+    height: 160px;
+    background: #b0d4e8;
+    top: 20px;
+    right: -20px;
+    opacity: 0.12;
+}
+
+.shape-3 {
+    width: 100px;
+    height: 100px;
+    background: var(--accent);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.05;
+}
+
+.illustration {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    position: relative;
+    z-index: 2;
+    animation: illustrationFloat 4s ease-in-out infinite;
+}
+
+@keyframes illustrationFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* ============================================
+   Right Panel
+   ============================================ */
+.right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 45px 40px;
+    position: relative;
+}
+
+/* Vertical Divider */
+.right-panel::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 0, 0, 0.06) 30%,
+        rgba(0, 0, 0, 0.06) 70%,
+        transparent
+    );
+}
+
+/* ============================================
+   Logo Section
+   ============================================ */
+.logo-section {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.university-logo {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.university-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 1.2px;
+    margin-bottom: 2px;
+}
+
+.student-panel-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* ============================================
+   Login Form
+   ============================================ */
+.login-form {
+    width: 100%;
+    max-width: 300px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-label {
+    display: block;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+}
+
+.input-field {
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid var(--border-light);
+    padding: 6px 0;
+    font-size: 13px;
+    font-family: var(--font);
+    color: var(--text-primary);
+    background: transparent;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+    border-bottom-color: var(--accent);
+}
+
+.input-field::placeholder {
+    color: transparent;
+}
+
+/* Password Wrapper */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper .input-field {
+    padding-right: 32px;
+}
+
+/* ============================================
+   Eye Toggle
+   ============================================ */
+.eye-toggle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.eye-toggle:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.eye-toggle:hover svg {
+    stroke: var(--accent);
+}
+
+.eye-icon {
+    transition: stroke 0.2s ease;
+}
+
+.eye-icon.hidden {
+    display: none;
+}
+
+/* ============================================
+   Form Options (Remember Me & Forgot)
+   ============================================ */
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+/* Custom Checkbox */
+.remember-me {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    font-size: 11px;
+    color: var(--text-secondary);
+    user-select: none;
+    gap: 6px;
+}
+
+.remember-me input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.checkmark {
+    width: 15px;
+    height: 15px;
+    border: 1.5px solid var(--border-light);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    position: relative;
+    background: #fff;
+}
+
+.remember-me input:checked ~ .checkmark {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.checkmark::after {
+    content: '';
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg) translate(-0.5px, -0.5px);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.remember-me input:checked ~ .checkmark::after {
+    opacity: 1;
+}
+
+.remember-text {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.forgot-password {
+    font-size: 11px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.forgot-password:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+/* ============================================
+   Sign In Button
+   ============================================ */
+.sign-in-btn {
+    width: 100%;
+    padding: 10px 0;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: var(--font);
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.sign-in-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.sign-in-btn:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 4px 15px rgba(0, 168, 214, 0.35);
+    transform: translateY(-1px);
+}
+
+.sign-in-btn:hover::before {
+    left: 100%;
+}
+
+.sign-in-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 168, 214, 0.25);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 768px) {
+    .login-card {
+        flex-direction: column;
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .left-panel {
+        padding: 30px 20px;
+        min-height: 200px;
+    }
+
+    .illustration {
+        max-width: 220px;
+    }
+
+    .right-panel {
+        padding: 30px 30px 35px;
+    }
+
+    .right-panel::before {
+        display: none;
+    }
+
+    .domain-text {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .left-panel {
+        display: none;
+    }
+
+    .login-card {
+        border-radius: 10px;
+    }
+
+    .right-panel {
+        padding: 40px 24px 30px;
+    }
+}

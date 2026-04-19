@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}EduTrackX — Add Marks{% endblock %}
+
+{% block content %}
+<div class="login-card" id="login-card">
+  <div class="card-shine" id="card-shine"></div>
+
+  <div style="text-align: center; margin-bottom: 30px; transform: translateZ(20px);">
+    <h2 style="color: var(--text-primary); font-size: 24px; font-weight: 600;">Add Marks</h2>
+    <p style="color: var(--text-muted); font-size: 13px;">Enter subject marks for a student</p>
+  </div>
+
+  <form class="login-form" method="POST" action="{{ url_for('add_marks') }}" autocomplete="off" novalidate>
+
+    <div class="input-group">
+      <input type="text" name="roll_no" id="roll_no" list="students_list" class="form-input" placeholder=" " required autocomplete="off" style="padding-left: 20px;">
+      <label for="roll_no" class="form-label" style="left: 20px;">Student Roll Number</label>
+      <div class="input-glow"></div>
+      
+      <datalist id="students_list">
+        {% for s in students %}
+          <option value="{{ s.roll_no }}">{{ s.name }}</option>
+        {% endfor %}
+      </datalist>
+    </div>
+
+    <div class="input-group">
+      <input type="text" name="subject" id="subject" class="form-input" placeholder=" " required autocomplete="off" style="padding-left: 20px;">
+      <label for="subject" class="form-label" style="left: 20px;">Subject Name</label>
+      <div class="input-glow"></div>
+    </div>
+
+    <div class="input-group">
+      <input type="number" name="marks" id="marks" min="0" max="100" class="form-input" placeholder=" " required autocomplete="off" style="padding-left: 20px;">
+      <label for="marks" class="form-label" style="left: 20px;">Marks (0-100)</label>
+      <div class="input-glow"></div>
+    </div>
+
+    <button type="submit" class="sign-in-btn" style="margin-top: 10px;">
+      <span class="btn-text">Save Marks</span>
+      <div class="btn-glow"></div>
+    </button>
+  </form>
+
+  <div style="text-align: center; margin-top: 20px; transform: translateZ(10px);">
+    <a href="{{ url_for('dashboard') }}" class="forgot-link" style="font-size: 13px;">&larr; Back to Dashboard</a>
+  </div>
+</div>
+{% endblock %}
