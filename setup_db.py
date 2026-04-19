@@ -1,25 +1,19 @@
-import mysql.connector
+import sqlite3
 
-try:
-    conn = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='Jantyking@1',
-        port=3306
-    )
-    cursor = conn.cursor()
-    cursor.execute("DROP DATABASE IF EXISTS edutrackx")
-    conn.commit()
-    print("Dropped database")
-    
-    with open('database.sql', 'r') as f:
-        sql = f.read()
-    
-    statements = sql.split(';')
-    for stmt in statements:
-        if stmt.strip():
-            cursor.execute(stmt)
-    conn.commit()
-    print("Database recreated successfully.")
-except Exception as e:
-    print(f"Error: {e}")
+conn = sqlite3.connect("database.db")
+cursor = conn.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT,
+    password TEXT
+)
+""")
+
+cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", ("admin", "admin"))
+
+conn.commit()
+conn.close()
+
+print("Database ready")
