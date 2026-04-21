@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import sqlite3
+=======
+import mysql.connector
+>>>>>>> 04e2dc763802bc2e6294fec2cfcb0e00a1e449a5
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from config import active_config
@@ -17,9 +21,21 @@ def dict_factory(cursor, row):
 
 def get_db_connection():
     try:
+<<<<<<< HEAD
         conn = sqlite3.connect('database.db', check_same_thread=False)
         conn.row_factory = dict_factory
         return conn
+=======
+        connection = mysql.connector.connect(
+            host=active_config.MYSQL_HOST,
+            user=active_config.MYSQL_USER,
+            password=active_config.MYSQL_PASSWORD,
+            database=active_config.MYSQL_DATABASE,
+            port=active_config.MYSQL_PORT,
+            autocommit=True  # Ensure changes are saved immediately
+        )
+        return connection
+>>>>>>> 04e2dc763802bc2e6294fec2cfcb0e00a1e449a5
     except Exception as e:
         print(f"CRITICAL: Database connection failed! {e}")
         return None
